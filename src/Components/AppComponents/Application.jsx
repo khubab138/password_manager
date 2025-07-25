@@ -12,6 +12,7 @@ const Application = () => {
   const [inputType, setInputTpe] = useState("file");
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   const [file, setfile] = useState(true);
+  const [name, setName] = useState(true);
   const [email, setEmail] = useState(true);
   const [password, setPassword] = useState(true);
 
@@ -33,13 +34,23 @@ const Application = () => {
   }
 
   function handleAdd() {
-    dispatch(
-      add({
-        file: file,
-        email: email,
-        password: password,
-      })
-    );
+    inputType === "file"
+      ? dispatch(
+          add({
+            file: file,
+            email: email,
+            password: password,
+            inputType: inputType,
+          })
+        )
+      : dispatch(
+          add({
+            file: name,
+            email: email,
+            password: password,
+            inputType: inputType,
+          })
+        );
     setfile("");
     setEmail("");
     setPassword("");
@@ -86,13 +97,15 @@ const Application = () => {
           type={inputType === "file" ? "file" : "url"}
           placeholder={inputType === "file" ? "" : "url"}
           onChange={(e) => {
-            setfile(e.target.files[0]), handleFileChange(e);
+            inputType === "file"
+              ? (setfile(e.target.files[0]), handleFileChange(e))
+              : setName(e.target.value);
           }}
         />
         <input
           className="col-span-2 border-white/30 text-white border-2 p-1 rounded-lg hover:border-2 hover:border-slate-800 active:border-0"
           type="email"
-          placeholder="Login Email"
+          placeholder="Email or Phone Number"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
@@ -103,7 +116,7 @@ const Application = () => {
             type={toggle ? "password" : "text"}
             placeholder="Password"
             onChange={(e) => {
-              setPassword(e);
+              setPassword(e.target.value);
             }}
           />
           <button
@@ -123,7 +136,7 @@ const Application = () => {
           </button>
         </div>
       </div>
-      //===============================RENDER_ELEMENT===========================================
+
       <ul
         className="flex flex-col items-center w-[90%] h-[75%] p-5   m-3 border-2 border-white/30 rounded-xl  overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent [&::-webkit-scrollbar]:w-2
     [&::-webkit-scrollbar-track]:rounded-full

@@ -16,6 +16,7 @@ import {
 
 const ApplicationList = () => {
   const APP = useSelector((state) => state.AppManagement);
+
   const dispatch = useDispatch();
   function handleDelete(id) {
     dispatch(appdelete(id));
@@ -37,16 +38,34 @@ const ApplicationList = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleEditToggle(id) {
+  function handleFileChange(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const isValid =
+        file.name.endsWith(".exe") ||
+        file.name.endsWith(".apk") ||
+        file.name.endsWith("zip");
+      if (isValid) {
+        setfile(file.name);
+      } else {
+        toast.error("Only .exe or .apk files allowed");
+        e.target.value = "";
+        setfile("");
+      }
+    }
+  }
+
+  function handleEditToggle(id, inputType) {
     dispatch(
       add({
         id: uuidv4(),
         file: file,
         email: email,
         password: password,
+        inputType: inputType,
       })
     );
-    dispatch(webdelete(id));
+    dispatch(appdelete(id));
     setfile("");
     setEmail("");
     setPassword("");
@@ -59,7 +78,7 @@ const ApplicationList = () => {
   function handleValue(id) {
     const app = APP.find((app) => app.id === id);
     if (app) {
-      setfile(app.website);
+      setfile(app.file.name);
       setEmail(app.email);
       setPassword(app.password);
     }
@@ -72,12 +91,21 @@ const ApplicationList = () => {
           ? app.file.length > 1 && (
               <li
                 key={index}
-                className=" INPUT_SECTION grid grid-cols-10 gap-2 place-content-center m-1 w-full h-[13%] bg-transparent font-roboto  "
+                className=" INPUT_SECTION grid grid-cols-10 gap-2 place-content-center m-1 w-full h-[13%] font-roboto  "
               >
                 <input
-                  value={file}
-                  onChange={(e) => setfile(e.target.value)}
-                  className="col-span-4 my-5  truncate  rounded-lg bg-slate-800 text-white/40  "
+                  className={
+                    app.inputType === "file"
+                      ? "col-span-4 my-5 truncate border-white/30  bg-slate-800  placeholder-white/40  placeholder-opacity-10  rounded-lg  hover:border-white/30   text-white/30 file:mr-4   file:rounded-full  file:text-sm    file:bg-slate-700 file:text-white  hover:file:bg-slate-600"
+                      : "col-span-4 my-5  truncate  rounded-lg bg-slate-800 text-white/40  "
+                  }
+                  type={app.inputType === "file" ? "file" : "url"}
+                  placeholder={app.inputType === "file" ? "" : "url"}
+                  onChange={(e) => {
+                    app.inputType === "file"
+                      ? (setfile(e.target.files), handleFileChange(e))
+                      : setfile(e.target.value);
+                  }}
                 />
                 <input
                   onChange={(e) => setEmail(e.target.value)}
@@ -103,7 +131,7 @@ const ApplicationList = () => {
 
                 <div className="col-span-1 my-5 flex justify-evenly items-center text-teal-400   ">
                   <button
-                    onClick={() => handleEditToggle(app.id)}
+                    onClick={() => handleEditToggle(app.id, app.inputType)}
                     className="  h-full px-5 cursor-pointer  bg-teal-400 text-slate-800 font-bold   rounded-xl hover:bg-transparent hover:border-2 hover:border-teal-400 hover:text-teal-400 "
                   >
                     Save
@@ -117,7 +145,7 @@ const ApplicationList = () => {
                 className=" grid grid-cols-10 gap-4 place-content-center m-1 p-2 w-full h-[13%] bg-slate-800 border-2 border-white/30 rounded-lg "
               >
                 <div className="col-span-4 m-1 px-1 truncate border-2 border-white/30 rounded-lg bg-white text-slate-800  ">
-                  {app.website}
+                  {app.file}
                 </div>
                 <div className="col-span-3 m-1 px-1 truncate border-2 border-white/30  rounded-lg bg-white text-slate-800 ">
                   {app.email}

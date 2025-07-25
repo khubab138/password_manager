@@ -1,6 +1,7 @@
 import React from "react";
 import Website from "./Components/WebsiteComponents/Website";
 import Application from "./Components/AppComponents/Application";
+import Key from "./Components/Keys/Key";
 
 const App = () => {
   return (
@@ -12,9 +13,13 @@ const App = () => {
               <h1 className="heading text-3xl w-full   ">WEBSITES</h1>
               <Website />
             </section> */}
-            <section name="app" className="h-full w-full ">
+            {/* <section name="app" className="h-full w-full ">
               <h1 className="heading text-3xl w-full   ">APPLICATIONS</h1>
               <Application />
+            </section> */}
+            <section name="app" className="h-full w-full ">
+              <h1 className="heading text-3xl w-full   ">Crypto Keys</h1>
+              <Key />
             </section>
           </div>
         </div>

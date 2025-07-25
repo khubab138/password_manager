@@ -24,6 +24,7 @@ export const ApplicationManagementSlice = createSlice({
         id: uuidv4(),
         toggle: false,
         edit: false,
+        inputType: action.payload.inputType,
       });
     },
     passToggle: (state, action) => {
