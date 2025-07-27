@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
 const info = [
-  // {
-  //   website: "dfd",
-  //   email: "dsfd",
-  //   password: "sfdsf",
-  //   id: "69f43b85-5dbe-422a-b18c-3eb6045e1284",
-  //   toggle: true,
-  //   edit: false,
-  // },
+  //   {
+  //     website: "dfd",
+  //     email: "dsfd",
+  //     password: "sfdsf",
+  //     id: "69f43b85-5dbe-422a-b18c-3eb6045e1284",
+  //     toggle: true,
+  //     edit: false,
+  //   },
 ];
 
 export const ManagementSlice = createSlice({
