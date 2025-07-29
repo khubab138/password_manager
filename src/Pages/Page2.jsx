@@ -1,0 +1,29 @@
+import React from "react";
+import Website from "../Components/WebsiteComponents/Website";
+import Application from "../Components/AppComponents/Application";
+import Key from "../Components/Keys/Key";
+
+const Page2 = () => {
+  return (
+    <div className="bg-cover bg-center bg-no-repeat h-screen bg-[url('../public/backgound.jpg')]">
+      <div className="relative h-screen w-screen flex items-center justify-center ">
+        <div className="  h-[80%] w-[80%] ">
+          <section name="website" className="h-full w-full ">
+            <h1 className="heading text-3xl w-full   ">WEBSITES</h1>
+            <Website />
+          </section>
+          <section name="app" className="h-full w-full ">
+            <h1 className="heading text-3xl w-full   ">APPLICATIONS</h1>
+            <Application />
+          </section>
+          <section name="app" className="h-full w-full ">
+            <h1 className="heading text-3xl w-full   ">Crypto Keys</h1>
+            <Key />
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Page2;
