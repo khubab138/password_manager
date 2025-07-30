@@ -6,8 +6,8 @@ import { IoShieldCheckmark } from "react-icons/io5";
 const About = () => {
   return (
     <section id="about" className="h-full w-full mt-20 px-5 ">
-      <div className="flex flex-row items-center justify-evenly  my-5 ">
-        <div className=" grid grid-rows-5  mx-5 ">
+      <div className="flex flex-row items-center justify-evenly   my-5 hover:-translate-y-0.5 ">
+        <div className=" grid grid-rows-5  mx-5 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(45, 212, 191, 0.4)] border-1 border-teal-400 rounded-lg ">
           <div className="heading text-4xl text-teal-400 row-span-2">
             Crypture
           </div>
@@ -21,7 +21,7 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className=" grid grid-rows-5  mx-5 ">
+        <div className=" grid grid-rows-5  mx-5 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(45, 212, 191, 0.4)] border-1 border-teal-400 rounded-lg ">
           <div className="heading text-6xl text-teal-400 row-span-2">
             <RiLockPasswordLine />
           </div>
@@ -35,7 +35,7 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className=" grid grid-rows-5  mx-5 ">
+        <div className=" grid grid-rows-5  mx-5 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(45, 212, 191, 0.4)] border-1 border-teal-400 rounded-lg ">
           <div className="heading text-6xl text-teal-400 row-span-2">
             <FaStackOverflow />
           </div>
@@ -49,17 +49,17 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className=" grid grid-rows-5  mx-5 ">
+        <div className=" grid grid-rows-5  mx-5 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(45, 212, 191, 0.4)] border-1 border-teal-400 rounded-lg ">
           <div className="heading text-6xl text-teal-400 row-span-2">
             <IoShieldCheckmark />
           </div>
           <div className="row-span-1">
-            <h1 className="text-3xl">Improve your security</h1>
+            <h1 className="text-3xl">Improve security</h1>
           </div>
           <div className="row-span-2">
             <p className="text-xl font-thin  ">
               Synchronize your passwords across multiple devices and explore
-              additional security features.
+              additional features.
             </p>
           </div>
         </div>

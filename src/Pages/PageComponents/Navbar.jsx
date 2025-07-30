@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  function handleButtons() {
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+  }
+
   return (
     <div className="fixed lg:top-3 top-6 w-screen lg:w-full z-50 ">
       <div className=" h-15 w-full m-2 flex justify-center ">
@@ -27,10 +35,16 @@ const Navbar = () => {
             </div>
             <div className="col-span-2  ">
               <div className="flex gap-2 justify-end">
-                <button className="px-4 py-1 rounded bg-teal-600 hover:bg-teal-500 transition">
+                <button
+                  onClick={handleButtons}
+                  className="px-4 py-1 rounded bg-teal-600 hover:bg-teal-500 transition"
+                >
                   Login
                 </button>
-                <button className="px-4 py-1 rounded border border-teal-400 hover:bg-teal-400 hover:text-black transition">
+                <button
+                  onClick={handleButtons}
+                  className="px-4 py-1 rounded border border-teal-400 hover:bg-teal-400 hover:text-black transition"
+                >
                   Sign Up
                 </button>
               </div>
